@@ -28,14 +28,14 @@ public class BasicSeleniumTest {
     }
 
     @AfterEach
-    public void cleanup(){
+    public void cleanup() throws InterruptedException {
         driver.quit();
     }
 
     @Test
     public void verifyCRUDTarea() throws InterruptedException {
         // login
-        driver.findElement(By.xpath("//img[contains(@src,'pagelogin')]")).click();
+        driver.findElement(By.xpath(LocatorsTodoLy.login)).click();
         driver.findElement(By.id("ctl00_MainContent_LoginControl1_TextBoxEmail")).sendKeys("bootcamp@mojix44.com");
         driver.findElement(By.id("ctl00_MainContent_LoginControl1_TextBoxPassword")).sendKeys("12345");
         driver.findElement(By.id("ctl00_MainContent_LoginControl1_ButtonLogin")).click();
@@ -66,12 +66,13 @@ public class BasicSeleniumTest {
         nameItem = "Updated" + new Date().getTime();
         driver.findElement(By.id("ItemEditTextbox")).clear();
         driver.findElement(By.id("ItemEditTextbox")).sendKeys(nameItem);
-        builder.moveToElement(driver.findElement(By.id("ItemEditTextbox")), 10, 25).click().build().perform();
+        // builder.moveToElement(driver.findElement(By.id("ItemEditTextbox")), 10, 25).click().build().perform();
         // This button doesn't save BUG
-        // driver.findElement(By.xpath("//div[@class='ItemContentDiv UnderEditingItem']/div/img[@id='ItemEditSubmit']")).click();
-        Thread.sleep(2000);
+        driver.findElement(By.xpath("//div[@class='ItemContentDiv UnderEditingItem']/div/img[@id='ItemEditSubmit']")).click();
+        Thread.sleep(5000);
 
-        actualResult = driver.findElements(By.xpath("//div[text()='" + nameItem + "']")).size();
+        actualResult = driver.findElements(By.xpath("//td/div[text()='" + nameItem + "']")).size();
+        System.out.println("HOLA" + actualResult);
         Assertions.assertTrue(actualResult >= 1, "Error The work was not updated");
 
     }
