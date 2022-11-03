@@ -8,10 +8,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
+import java.util.NoSuchElementException;
 
 public class BasicSeleniumTest {
 
@@ -23,9 +26,10 @@ public class BasicSeleniumTest {
         System.out.println("setup");
         System.setProperty("webdriver.chrome.driver","src/test/resources/driver/chromedriver");
         driver = new ChromeDriver();
-        driver.get("http://todo.ly/");
         builder = new Actions(driver);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(5));
+        driver.get("http://todo.ly/");
     }
 
     @AfterEach
@@ -41,6 +45,18 @@ public class BasicSeleniumTest {
         driver.findElement(By.id("ctl00_MainContent_LoginControl1_TextBoxPassword")).sendKeys("12345");
         driver.findElement(By.id("ctl00_MainContent_LoginControl1_ButtonLogin")).click();
         Thread.sleep(2000);
+
+        /*
+        // Explicit wait
+        WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        explicitWait.until(ExpectedConditions.elementToBeClickable(By.id("ctl00_HeaderTopControl1_LinkButtonLogout")));
+
+        // Fluent wait
+        FluentWait<WebDriver> fluentWait = new FluentWait<>(driver).withTimeout(Duration.ofSeconds(10))
+                        .pollingEvery(Duration.ofMillis(100)).ignoring(NoSuchElementException.class);
+
+        fluentWait.until(ExpectedConditions.elementToBeClickable(By.id("ctl00_HeaderTopControl1_LinkButtonLogout")));
+        */
 
         Assertions.assertTrue(driver.findElement(By.id("ctl00_HeaderTopControl1_LinkButtonLogout")).isDisplayed()
                 ,"ERROR login was incorrect");
@@ -67,9 +83,9 @@ public class BasicSeleniumTest {
         nameItem = "Updated" + new Date().getTime();
         driver.findElement(By.id("ItemEditTextbox")).clear();
         driver.findElement(By.id("ItemEditTextbox")).sendKeys(nameItem);
-        // builder.moveToElement(driver.findElement(By.id("ItemEditTextbox")), 10, 25).click().build().perform();
+        builder.moveToElement(driver.findElement(By.id("ItemEditTextbox")), 10, 25).click().build().perform();
         // This button doesn't save BUG
-        driver.findElement(By.xpath("//div[@class='ItemContentDiv UnderEditingItem']/div/img[@id='ItemEditSubmit']")).click();
+        // driver.findElement(By.xpath("//div[@class='ItemContentDiv UnderEditingItem']/div/img[@id='ItemEditSubmit']")).click();
         Thread.sleep(5000);
 
         actualResult = driver.findElements(By.xpath("//td/div[text()='" + nameItem + "']")).size();
