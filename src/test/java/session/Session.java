@@ -2,13 +2,13 @@ package session;
 
 import browser.FactoryBrowser;
 import org.openqa.selenium.WebDriver;
+import utils.GetProperties;
 
 public class Session {
     private static Session instance = null;
     private WebDriver browser;
     private Session() {
-        // todo -- create and move to properties
-        browser= FactoryBrowser.make("chrome").create();
+        browser= FactoryBrowser.make(GetProperties.getInstance().getBrowser()).create();
     }
 
     public static Session getInstance() {
@@ -24,5 +24,9 @@ public class Session {
 
     public WebDriver getBrowser() {
         return browser;
+    }
+
+    public void acceptAlert(){
+        browser.switchTo().alert().accept();
     }
 }
