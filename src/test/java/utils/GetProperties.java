@@ -25,9 +25,14 @@ public class GetProperties {
         return pwd;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
     private String host;
     private String user;
     private String pwd;
+    private  String email;
 
     private GetProperties(){
         Properties properties = new Properties();
@@ -40,6 +45,7 @@ public class GetProperties {
                 host = properties.getProperty("host");
                 user = properties.getProperty("user");
                 pwd = properties.getProperty("pwd");
+                email = properties.getProperty("email");
 
             } catch (IOException e) {
                 throw new RuntimeException(e);

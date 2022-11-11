@@ -2,10 +2,10 @@ package testSuite.todoly;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import page.LoginSection;
-import page.MainPage;
-import page.MenuSection;
-import page.ProjectSection;
+import page.todoly.LoginSection;
+import page.todoly.MainPage;
+import page.todoly.MenuSection;
+import page.todoly.ProjectSection;
 import session.Session;
 import utils.GetProperties;
 

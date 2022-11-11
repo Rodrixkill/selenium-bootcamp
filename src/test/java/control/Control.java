@@ -39,10 +39,19 @@ public class Control {
         return this.control.getText();
     }
 
-
     public void waitControlIsNotInThePage(){
-        WebDriverWait explicitWait = new WebDriverWait(Session.getInstance().getBrowser(), Duration.ofSeconds(5));
+        WebDriverWait explicitWait = new WebDriverWait(Session.getInstance().getBrowser(), Duration.ofSeconds(10));
         explicitWait.until(ExpectedConditions.not(ExpectedConditions.visibilityOfElementLocated(this.locator)));
+    }
+
+    public void waitControlIsInThePage(){
+        WebDriverWait explicitWait = new WebDriverWait(Session.getInstance().getBrowser(), Duration.ofSeconds(10));
+        explicitWait.until(ExpectedConditions.visibilityOfElementLocated(this.locator));
+    }
+
+    public void waitControlIsClickablePage(){
+        WebDriverWait explicitWait = new WebDriverWait(Session.getInstance().getBrowser(), Duration.ofSeconds(10));
+        explicitWait.until(ExpectedConditions.elementToBeClickable(this.locator));
     }
 
 }

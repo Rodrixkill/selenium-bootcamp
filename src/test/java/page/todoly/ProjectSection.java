@@ -1,9 +1,10 @@
-package page;
+package page.todoly;
 
 import control.Button;
 import control.Label;
 import control.TextBox;
 import org.openqa.selenium.By;
+import page.todoly.MenuProjectSection;
 
 public class ProjectSection {
     public MenuProjectSection menuProjectSection= new MenuProjectSection();

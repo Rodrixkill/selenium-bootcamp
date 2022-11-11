@@ -17,7 +17,7 @@ public class CRUDProjectTest extends TestBase{
         loginSection.emailTxtBox.setText(user);
         loginSection.passwordTxtBox.setText(password);
         loginSection.loginButton.click();
-        Assertions.assertTrue(menuSection.logOutButton.isControlDisplayed(),"ERROR! the login was failed");
+        Assertions.assertTrue(menuSection.logoutButton.isControlDisplayed(),"ERROR! the login was failed");
 
         projectSection.addNewProjecButton.click();
         projectSection.nameProjectTxtBox.setText(projectCreated);

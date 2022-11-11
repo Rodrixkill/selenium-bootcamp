@@ -2,7 +2,11 @@ package session;
 
 import browser.FactoryBrowser;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.GetProperties;
+
+import java.time.Duration;
 
 public class Session {
     private static Session instance = null;
@@ -28,5 +32,13 @@ public class Session {
 
     public void acceptAlert(){
         browser.switchTo().alert().accept();
+    }
+
+    public void enterIframe(String id){
+        browser.switchTo().frame(id);
+    }
+
+    public void outOfIframe(){
+        browser.switchTo().parentFrame();
     }
 }
