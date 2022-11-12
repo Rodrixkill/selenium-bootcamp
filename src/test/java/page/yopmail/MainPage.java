@@ -6,6 +6,6 @@ import org.openqa.selenium.By;
 
 public class MainPage {
     public TextBox temporalMailTxtBox = new TextBox(By.id("login"));
-    public Button enterEmailButton = new Button(By.xpath("//div[@id=\"refreshbut\"]/button"));
+    public Button enterEmailButton = new Button(By.xpath("//div[@id='refreshbut']/button"));
 
 }

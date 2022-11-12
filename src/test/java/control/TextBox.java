@@ -2,6 +2,7 @@ package control;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import session.Session;
 
 import java.security.Key;
 

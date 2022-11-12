@@ -3,10 +3,11 @@ package testSuite.todoist;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import page.todoist.EditProjectModal;
+import utils.GetPropertiesTodoist;
 
 import java.util.Date;
 
-public class CRUDProjectTest extends BaseTest{
+public class CRUDProjectTodoistTest extends TodoistTestBase {
 
     EditProjectModal editProjectModal = new EditProjectModal();
 
@@ -17,18 +18,19 @@ public class CRUDProjectTest extends BaseTest{
 
         mainPage.addProject.click();
         editProjectModal.projectNameTxtBox.setText(projectName);
-        editProjectModal.saveCreationProjectButton.click();
+        editProjectModal.saveProjectButton.click();
 
         Assertions.assertTrue(mainPage.isProjectDisplayedInList(projectName), "Error! project not created");
 
-        mainPage.openMoreMenu.click();
+        mainPage.openMoreMenuButton(projectName).click();
         mainPage.editProject.click();
         editProjectModal.projectNameTxtBox.cleanSetText(updateProjectName);
-        editProjectModal.saveEditionProjectButton.click();
+        editProjectModal.saveProjectButton.click();
+
 
         Assertions.assertTrue(mainPage.isProjectDisplayedInList(updateProjectName), "Error! project not updated");
 
-        mainPage.openMoreMenu.click();
+        mainPage.openMoreMenuButton(updateProjectName).click();
         mainPage.deleteProject.click();
         mainPage.confirmButtonProject.click();
 

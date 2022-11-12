@@ -6,7 +6,6 @@ import org.openqa.selenium.By;
 
 public class EditProjectModal {
     public TextBox projectNameTxtBox = new TextBox(By.id("edit_project_modal_field_name"));
-    public Button saveCreationProjectButton = new Button(By.xpath("//footer/button[contains(text(),\"adir\")]"));
-    public Button saveEditionProjectButton = new Button(By.xpath("//button[text() = \"Guardar\"]"));
+    public Button saveProjectButton = new Button(By.xpath("//footer[@class='reactist_modal_box__actions']/button[@type='submit']"));
 
 }

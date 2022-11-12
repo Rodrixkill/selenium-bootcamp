@@ -12,7 +12,7 @@ public class EmailSection {
     public TextBox sendTxtBox = new TextBox(By.id("msgsend"));
     public Label msgSentLabel = new Label(By.id("msgpopmsg"));
     public Label iframeMsg = new Label(By.id("ifmail"));
-
+    // Enter the iframe ifmail
     public void enterIframeEmail(){
         Session.getInstance().enterIframe("ifmail");
     }
