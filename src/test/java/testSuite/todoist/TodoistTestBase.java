@@ -13,8 +13,8 @@ public class TodoistTestBase {
     @BeforeEach
     public void openBrowser(){
         Session.getInstance().getBrowser().get(GetPropertiesTodoist.getInstance().getHost());
+        // Login performed for each test
         loginPage.loginButton.click();
-
         loginPage.emailTxtBox.isControlDisplayed();
         loginPage.emailTxtBox.setText(GetPropertiesTodoist.getInstance().getEmail());
         loginPage.passTxtBox.setText(GetPropertiesTodoist.getInstance().getPassword());

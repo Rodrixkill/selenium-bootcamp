@@ -16,20 +16,22 @@ public class CRUDProjectTodoistTest extends TodoistTestBase {
         String projectName = "Proj" + new Date().getTime();
         String updateProjectName = "UpdateProj" + new Date().getTime();
 
+        // Project creation
         mainPage.addProject.click();
         editProjectModal.projectNameTxtBox.setText(projectName);
         editProjectModal.saveProjectButton.click();
 
         Assertions.assertTrue(mainPage.isProjectDisplayedInList(projectName), "Error! project not created");
 
+        // Project edition
         mainPage.openMoreMenuButton(projectName).click();
         mainPage.editProject.click();
         editProjectModal.projectNameTxtBox.cleanSetText(updateProjectName);
         editProjectModal.saveProjectButton.click();
 
-
         Assertions.assertTrue(mainPage.isProjectDisplayedInList(updateProjectName), "Error! project not updated");
 
+        // Project deletion
         mainPage.openMoreMenuButton(updateProjectName).click();
         mainPage.deleteProject.click();
         mainPage.confirmButtonProject.click();

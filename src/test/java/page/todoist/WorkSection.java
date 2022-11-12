@@ -4,12 +4,11 @@ import control.Button;
 import control.Label;
 import control.TextBox;
 import org.openqa.selenium.By;
-import session.Session;
 
 public class WorkSection {
     public Button addWorkButton = new Button(By.xpath("//button[@data-add-task-navigation-element = 'true']"));
-    public TextBox addEditNameWorkTxtBox = new TextBox(By.xpath("//div[contains(@class,'public-DraftStyleDefault-block')]"));
-    public TextBox addEditDescriptionWorkTxtBox = new TextBox(By.xpath("//textarea[contains(@class,'description_field')]"));
+    public TextBox addNameWorkTxtBox = new TextBox(By.xpath("//div[contains(@class,'public-DraftStyleDefault-block')]"));
+    public TextBox addDescriptionWorkTxtBox = new TextBox(By.xpath("//textarea[contains(@class,'description_field')]"));
     public Button saveWorkButton = new Button(By.xpath("//button[@data-testid = 'task-editor-submit-button']"));
 
     public TextBox editWorkDescriptionTxtBox = new TextBox(By.xpath("//div[@data-testid='task-details-modal']//textarea[@placeholder = 'Description']"));

@@ -18,19 +18,22 @@ public class CRUDWorkTodoistTest extends TodoistTestBase {
         String workDescription = "Work this is a description" + new Date().getTime();
         String updatedWorkDescription = "Updated description" + new Date().getTime();
 
+        // Project creation
         mainPage.addProject.click();
         editProjectModal.projectNameTxtBox.setText(projectName);
         editProjectModal.saveProjectButton.click();
 
         Assertions.assertTrue(mainPage.isProjectDisplayedInList(projectName), "Error! project not created");
 
+        // Work creation
         workSection.addWorkButton.click();
-        workSection.addEditNameWorkTxtBox.setText(workName);
-        workSection.addEditDescriptionWorkTxtBox.setText(workDescription);
+        workSection.addNameWorkTxtBox.setText(workName);
+        workSection.addDescriptionWorkTxtBox.setText(workDescription);
         workSection.saveWorkButton.click();
 
         Assertions.assertTrue(workSection.isWorkDisplayedInList(workName), "Error! work could not be created");
 
+        // Work edition
         workSection.clickOnWork(workName);
         workSection.editWork(workName);
         workSection.editWorkDescriptionTxtBox.cleanSetText(updatedWorkDescription);
@@ -39,6 +42,7 @@ public class CRUDWorkTodoistTest extends TodoistTestBase {
 
         Assertions.assertTrue(workSection.isWorkDisplayedInList(updatedWorkDescription), "Error! work could not be updated");
 
+        // Work deletion
         workSection.clickOnWork(updatedWorkDescription);
         workSection.openMoreMenuButton.click();
         workSection.deleteTaskModalButton.click();
